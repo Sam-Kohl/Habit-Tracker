@@ -85,6 +85,41 @@ app.listen(process.env.PORT || PORT, ()=>{
     })
 
 
+    app.put('/scoreUp', (request, response) => {
+        db.collection('habits').updateOne({name: request.body.habitFromJS},{
+            $inc: {
+                score: 1
+              }
+        },{
+            sort: {_id: -1},
+            upsert: false
+        })
+        .then(result => {
+            console.log('Score raised by 1')
+            response.json('Score raised by 1')
+        })
+        .catch(error => console.error(error))
+    
+    })
+
+    app.put('/scoreDown', (request, response) => {
+        db.collection('habits').updateOne({name: request.body.habitFromJS},{
+            $inc: {
+                score: -1
+              }
+        },{
+            sort: {_id: -1},
+            upsert: false
+        })
+        .then(result => {
+            console.log('Score Lowered by 1')
+            response.json('Score Lowered by 1')
+        })
+        .catch(error => console.error(error))
+    
+    })
+
+
     app.delete('/deleteHabit', (request, response) => {
         db.collection('habits').deleteOne({name: request.body.habitFromJS})
         .then(result => {
