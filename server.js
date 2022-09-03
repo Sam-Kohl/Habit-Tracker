@@ -50,6 +50,41 @@ app.listen(process.env.PORT || PORT, ()=>{
     })
 
 
+    app.put('/makeFocused', (request, response) => {
+        db.collection('habits').updateOne({name: request.body.habitFromJS},{
+            $set: {
+                focused: true
+              }
+        },{
+            sort: {_id: -1},
+            upsert: false
+        })
+        .then(result => {
+            console.log('Habit now Focused')
+            response.json('Habit now Focused')
+        })
+        .catch(error => console.error(error))
+    
+    })
+
+    app.put('/unFocus', (request, response) => {
+        db.collection('habits').updateOne({name: request.body.habitFromJS},{
+            $set: {
+                focused: false
+              }
+        },{
+            sort: {_id: -1},
+            upsert: false
+        })
+        .then(result => {
+            console.log('Habit Unfocused')
+            response.json('Habit Unfocused')
+        })
+        .catch(error => console.error(error))
+    
+    })
+
+
     app.delete('/deleteHabit', (request, response) => {
         db.collection('habits').deleteOne({name: request.body.habitFromJS})
         .then(result => {
