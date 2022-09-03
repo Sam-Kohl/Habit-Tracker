@@ -31,9 +31,9 @@ app.listen(process.env.PORT || PORT, ()=>{
         // response.render('index.ejs', { items: todoItems, left: itemsLeft })
         db.collection('habits').find().toArray()
         .then(data => {
-            db.collection('habits').countDocuments({completed: false})
+            db.collection('habits').countDocuments()
             .then(itemsLeft => {
-                response.render('index.ejs', { items: data, left: itemsLeft })
+                response.render('index.ejs', { habits: data, left: itemsLeft })
             })
         })
         .catch(error => console.error(error))
@@ -41,10 +41,21 @@ app.listen(process.env.PORT || PORT, ()=>{
 
 
     app.post('/addHabit', (request, response) => {
-        db.collection('habits').insertOne({thing: request.body.habitItem, completed: false})
+        db.collection('habits').insertOne({name: request.body.habitItem, focused: false, score: 0})
         .then(result => {
             console.log('Habit Added')
             response.redirect('/')
         })
         .catch(error => console.error(error))
+    })
+
+
+    app.delete('/deleteHabit', (request, response) => {
+        db.collection('habits').deleteOne({name: request.body.habitFromJS})
+        .then(result => {
+            console.log('Habit Deleted')
+            response.json('Habit Deleted')
+        })
+        .catch(error => console.error(error))
+    
     })

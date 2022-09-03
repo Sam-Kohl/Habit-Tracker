@@ -10,31 +10,33 @@
 </head>
 
 <body>
-    <h1>Habits: </h1>
-    <ul class="habitItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <i class="fa-regular fa-thumbs-up"></i>
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <i class="fa-regular fa-thumbs-down"></i>
-        </li>
-    <% } %>
-    </ul>
+    <main>
+        <h1>Habits: </h1>
+        <ul class="habitItems">
+        <% for(let i=0; i < habits.length; i++) {%>
+            <li class="habit">
+                    <i class="fa-regular fa-thumbs-up"></i>
+             <% if(habits[i].focused === true) {%>
+                    <span class='focused'><%= habits[i].name %></span>
+                <% }else{ %>
+                    <span><%= habits[i].name %></span>
+                <% } %>    
+                <i class="fa-regular fa-thumbs-down"></i>
+                <i class="fa-solid fa-trash"></i>
+            </li>
+        <% } %>
+        </ul>
 
-    <h2>Left to do: <%= left %></h2>
+        <h2>Total Habits Tracked: <%= left %></h2>
 
-    <h2>Add A Todo:</h2>
+        <h2>Add A Todo:</h2>
 
-    <form action="/addHabit" method="POST">
-        <input type="text" placeholder="Thing To Do" name="habitItem">
-        <input type="submit">
-    </form>
+        <form action="/addHabit" method="POST">
+            <input type="text" placeholder="Habit To Do" name="habitItem">
+            <input type="submit">
+        </form>
+    </main>
     
-
     <script src='js/main.js'></script>
 </body>
 </html>
