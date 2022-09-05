@@ -28,13 +28,14 @@ Array.from(habitFocused).forEach((element)=>{
 })
 
 async function deleteHabit(){
-    const habitText = this.parentNode.childNodes[1].innerText || this.parentNode.childNodes[3].innerText // Gets inner text from span regardless of focused or not
+    const habitId = this.parentNode.dataset.id // Gets data-id assigned by database from parent element 
+    console.log(`habitID is: ${habitId}`)
     try{
-        const response = await fetch('deleteHabit', { //Sends delete request via web api
+        const response = await fetch('habits/deleteHabit', { //Sends delete request via web api
             method: 'delete',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-              'habitFromJS': habitText // Grabs innertext of span to pass to server
+              'habitIdFromJS': habitId // Grabs id of span to pass to server
             })
           })
         const data = await response.json()

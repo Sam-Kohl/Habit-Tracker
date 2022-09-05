@@ -2,14 +2,14 @@ const express = require('express')
 const router = express.Router()
 const habitController = require('../controllers/habits')
 
-router.get('/', habitController.getHabits)
+router.get('/', habitController.getHabits) //Passes Get requests to /habits/ to controller
 
-router.post('/createTodo', habitController.createHabits)
+router.post('/createHabit', habitController.createHabit) //Passes Post requests to /habits/createHabit to controller
 
-router.put('/markComplete', habitController.markComplete)
+// router.put('/markComplete', habitController.markComplete)
 
-router.put('/markIncomplete', habitController.markIncomplete)
+// router.put('/markIncomplete', habitController.markIncomplete)
 
-router.delete('/deleteTodo', habitController.deleteHabit)
+router.delete('/deleteHabit', habitController.deleteHabit)
 
 module.exports = router
