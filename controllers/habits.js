@@ -31,7 +31,31 @@ module.exports = {
         }catch(err){
             console.log(err)
         }
-    }
+    },
+
+    focusHabit: async (req, res)=>{
+        try{
+            await Habit.findOneAndUpdate({_id:req.body.habitIdFromJS},{
+                focused: true
+            })
+            console.log(`Habit ${req.body.habitIdFromJS} focused`)
+            res.json(`Habit ${req.body.habitIdFromJS} focused`)
+        }catch(err){
+            console.log(err)
+        }
+    },
+
+    unfocusHabit: async (req, res)=>{
+        try{
+            await Habit.findOneAndUpdate({_id:req.body.habitIdFromJS},{
+                focused: false
+            })
+            console.log(`Habit ${req.body.habitIdFromJS} unfocused`)
+            res.json(`Habit ${req.body.habitIdFromJS} unfocused`)
+        }catch(err){
+            console.log(err)
+        }
+    },
 }
 
 // app.get('/',async (request, response)=>{

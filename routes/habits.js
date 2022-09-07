@@ -6,9 +6,9 @@ router.get('/', habitController.getHabits) //Passes Get requests to /habits/ to 
 
 router.post('/createHabit', habitController.createHabit) //Passes Post requests to /habits/createHabit to controller
 
-// router.put('/markComplete', habitController.markComplete)
+router.put('/focusHabit', habitController.focusHabit)
 
-// router.put('/markIncomplete', habitController.markIncomplete)
+router.put('/unfocusHabit', habitController.unfocusHabit)
 
 router.delete('/deleteHabit', habitController.deleteHabit)
 

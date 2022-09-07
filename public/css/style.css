@@ -6,3 +6,7 @@ main {
 .focused {
     background-color: yellow;
 }
+
+.unFocused {
+    background-color: white;
+}
