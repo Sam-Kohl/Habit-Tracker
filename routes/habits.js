@@ -10,6 +10,10 @@ router.put('/focusHabit', habitController.focusHabit)
 
 router.put('/unfocusHabit', habitController.unfocusHabit)
 
+router.put('/scoreUp', habitController.scoreUp)
+
+router.put('/scoreDown', habitController.scoreDown)
+
 router.delete('/deleteHabit', habitController.deleteHabit)
 
 module.exports = router

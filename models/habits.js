@@ -8,6 +8,11 @@ const HabitSchema = new mongoose.Schema({
   focused: {
     type: Boolean,
     required: true,
+  },
+  
+  score: {
+    type: Number,
+    required: true,
   }
 })
 

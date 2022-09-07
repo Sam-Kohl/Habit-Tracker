@@ -14,7 +14,7 @@ module.exports = {
 
     createHabit: async (req,res)=>{
         try{
-            await Habit.create({Habit: req.body.habitItem, focused: false})
+            await Habit.create({Habit: req.body.habitItem, focused: false, score: 0})
             console.log('Habit has been added!')
             res.redirect('/habits')
         }catch(err){
@@ -56,6 +56,30 @@ module.exports = {
             console.log(err)
         }
     },
+
+    scoreUp: async (req,res)=>{
+        try{
+            await Habit.findOneAndUpdate({_id:req.body.habitIdFromJS},{
+                $inc: {score: 1}
+            })
+            console.log(`Habit ${req.body.habitIdFromJS} score raised`)
+            res.json(`Habit ${req.body.habitIdFromJS} score raised`)
+        }catch(err){
+            console.log(err)
+            }
+    },
+
+    scoreDown: async (req,res)=>{
+        try{
+            await Habit.findOneAndUpdate({_id:req.body.habitIdFromJS},{
+                $inc: {score: -1}
+            })
+            console.log(`Habit ${req.body.habitIdFromJS} score lowered`)
+            res.json(`Habit ${req.body.habitIdFromJS} score lowered`)
+        }catch(err){
+            console.log(err)
+            }
+    }
 }
 
 // app.get('/',async (request, response)=>{

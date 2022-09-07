@@ -10,13 +10,13 @@ Array.from(deleteBtn).forEach((element)=>{ // Puts every deleteBtn in array
     element.addEventListener('click', deleteHabit) // Puts click listener on every deleteBtn
 })
 
-// Array.from(thumbsUpBtn).forEach((element)=>{ 
-//     element.addEventListener('click', scoreUp) 
-// })
+Array.from(thumbsUpBtn).forEach((element)=>{ 
+    element.addEventListener('click', scoreUp) 
+})
 
-// Array.from(thumbsDownBtn).forEach((element)=>{ 
-//     element.addEventListener('click', scoreDown) 
-// })
+Array.from(thumbsDownBtn).forEach((element)=>{ 
+    element.addEventListener('click', scoreDown) 
+})
 
 
 Array.from(habitUnfocused).forEach((element)=>{
@@ -87,40 +87,40 @@ async function unfocusHabit(){
     }
 }
 
-// async function scoreUp(){
-//     const habitText = this.parentNode.childNodes[3].innerText
-//     try{
-//         const response = await fetch('scoreUp', {
-//             method: 'put',
-//             headers: {'Content-Type': 'application/json'},
-//             body: JSON.stringify({
-//                 'habitFromJS': habitText
-//             })
-//           })
-//         const data = await response.json()
-//         console.log(data)
-//         location.reload()
+async function scoreUp(){
+    const habitId = this.parentNode.dataset.id
+    try{
+        const response = await fetch('habits/scoreUp', {
+            method: 'put',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                'habitIdFromJS': habitId
+            })
+          })
+        const data = await response.json()
+        console.log(data)
+        location.reload()
 
-//     }catch(err){
-//         console.log(err)
-//     }
-// }
+    }catch(err){
+        console.log(err)
+    }
+}
 
-// async function scoreDown(){
-//     const habitText = this.parentNode.childNodes[3].innerText
-//     try{
-//         const response = await fetch('scoreDown', {
-//             method: 'put',
-//             headers: {'Content-Type': 'application/json'},
-//             body: JSON.stringify({
-//                 'habitFromJS': habitText
-//             })
-//           })
-//         const data = await response.json()
-//         console.log(data)
-//         location.reload()
+async function scoreDown(){
+    const habitId = this.parentNode.dataset.id
+    try{
+        const response = await fetch('habits/scoreDown', {
+            method: 'put',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                'habitIdFromJS': habitId
+            })
+          })
+        const data = await response.json()
+        console.log(data)
+        location.reload()
 
-//     }catch(err){
-//         console.log(err)
-//     }
-// }
+    }catch(err){
+        console.log(err)
+    }
+}
