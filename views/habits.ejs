@@ -30,12 +30,14 @@
 
         <h2>Total Habits Tracked: <%= left %></h2>
 
-        <h2>Add A Todo:</h2>
+        <h2>Add A Habit:</h2>
 
         <form action="/habits/createHabit" method="POST">
             <input type="text" placeholder="Habit To Do" name="habitItem">
             <input type="submit">
         </form>
+
+        <button action="/logout" method="GET">Logout</button>
     </main>
     
     <script src='js/main.js'></script>

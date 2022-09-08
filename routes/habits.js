@@ -1,8 +1,9 @@
 const express = require('express')
 const router = express.Router()
 const habitController = require('../controllers/habits')
+const { ensureAuth } = require('../middleware/auth')
 
-router.get('/', habitController.getHabits) //Passes Get requests to /habits/ to controller
+router.get('/', ensureAuth, habitController.getHabits) //Passes Get requests to /habits/ to controller
 
 router.post('/createHabit', habitController.createHabit) //Passes Post requests to /habits/createHabit to controller
 
